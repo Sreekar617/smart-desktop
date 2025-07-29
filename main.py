@@ -1,6 +1,7 @@
 import os  # Used for path stuff actually
 import ctypes  # ctypes is used specifically to change the wallpaper
 import requests  # Used to get time and weather
+import random
 import json
 
 
