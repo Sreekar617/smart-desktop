@@ -1,9 +1,6 @@
-from datetime import datetime
-import os  # Used for interacting safely with the operating system to access my secret (environmental) variable
+import os  # Used for path stuff actually
 import ctypes  # ctypes is used specifically to change the wallpaper
-import requests  # Used to get cat images for the background
-import random
-import requests
+import requests  # Used to get time and weather
 import json
 
 
@@ -26,7 +23,7 @@ def get_info():
 get_info()
 
 ### Constants ###
-imagePath = r"C:\Users\Ramisetty\Pictures\smartwallpapers\main.jpg"  # Replace with the DIRECT file path to your wallpaper
+imagePath = r"C:\Users\Ramisetty\Pictures\smartwallpapers\main.jpg" 
 dayFolder = r"C:\Users\Ramisetty\Pictures\smartwallpapers\Day"
 nightFolder = r"C:\Users\Ramisetty\Pictures\smartwallpapers\Night"
 morningFolder = r"C:\Users\Ramisetty\Pictures\smartwallpapers\Morning"
@@ -38,7 +35,7 @@ def setWallpaper(imagePath):
     ctypes.windll.user32.SystemParametersInfoA(SPI_SETDESKWALLPAPER, 0, os.path.abspath(imagePath).encode(), 0)
 
 
-# Generate a message to add to the wallpaper based on the current time
+
 hour = current_time['hour']
 if weather['precipitation'] > 0.05: # arbitrary based on current precipitation (storm is basically over), increase to 0.1 later?
     print("rain")
@@ -49,7 +46,7 @@ if weather['precipitation'] > 0.05: # arbitrary based on current precipitation (
 
     with open(imagePath, 'wb') as dst_file:
         dst_file.write(image_bytes)
-        
+
 elif hour >= 19 or hour <= 6:
     print("night")
     image_files = [f for f in os.listdir(nightFolder) if f.lower().endswith(('.jpg', '.jpeg'))] # kaoruhana reference? 
